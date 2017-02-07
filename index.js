@@ -17,7 +17,7 @@ const index = require(`${root}/routers/index.js`)
 const twitter = require(`${root}/routers/twitter.js`)
 const instagram = require(`${root}/routers/instagram.js`)
 
-server.connection({PORT})
+server.connection({port: PORT})
 
 server.route(index)
 
