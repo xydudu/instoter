@@ -7,6 +7,8 @@ const bell = require('bell')
 require('dotenv').config()
 
 const {TWITTER_KEY, TWITTER_SECRET, INSTAGRAM_KEY, INSTAGRAM_SECRET} = process.env
+const {TWITTER_CALLBACK, INSTAGRAM_CALLBACK} = process.env
+const {PORT} = process.env
 
 const server = new hapi.Server()
 
@@ -15,7 +17,7 @@ const index = require(`${root}/routers/index.js`)
 const twitter = require(`${root}/routers/twitter.js`)
 const instagram = require(`${root}/routers/instagram.js`)
 
-server.connection({port: 3000})
+server.connection({PORT})
 
 server.route(index)
 
@@ -25,14 +27,16 @@ server.register(bell, _err => {
         password: 'cookie_encryption_password_secure',
         clientId: TWITTER_KEY,
         clientSecret: TWITTER_SECRET,
-        isSecure: false
+        location: TWITTER_CALLBACK
+        //isSecure: false
     })
     server.auth.strategy('instagram', 'bell', {
         provider: 'instagram',
         password: 'cookie_encryption_password_secure',
         clientId: INSTAGRAM_KEY,
         clientSecret: INSTAGRAM_SECRET,
-        isSecure: false
+        //isSecure: false,
+        location: INSTAGRAM_CALLBACK
     })
     server.route(twitter)
     server.route(instagram)
