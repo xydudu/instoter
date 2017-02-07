@@ -4,7 +4,8 @@
   "description": "When I use IFTTT for instagram to twitter, as a very active Instagram user, my Twitter timeline is like a spam box. I need a service can slow down sync from Instagram, and there is the service application. Instoter tweet your Instagram 4 photos each time, so you Twitter timeline will looks clean then before.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./index.js",
+    "now": "./node_modules/.bin/now"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,13 @@
   "homepage": "https://github.com/xydudu/instoter#readme",
   "dependencies": {
     "bell": "^8.5.0",
-    "twitter": "^1.7.0"
+    "dotenv": "^4.0.0",
+    "hapi": "^16.1.0"
+  },
+  "devDependencies": {
+    "now": "^4.2.2"
+  },
+  "engines" : {
+    "node" : "v0.7.5"
   }
 }
