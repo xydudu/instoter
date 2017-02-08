@@ -45,8 +45,8 @@ server.register(bell, _err => {
         password: 'cookie_encryption_password_secure',
         clientId: INSTAGRAM_KEY,
         clientSecret: INSTAGRAM_SECRET,
-        isSecure: false
-        //location: INSTAGRAM_CALLBACK
+        isSecure: false,
+        location: INSTAGRAM_CALLBACK
     })
     server.route(twitter)
     server.route(instagram)
