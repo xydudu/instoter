@@ -36,17 +36,17 @@ server.register(bell, _err => {
         provider: 'twitter',
         password: 'cookie_encryption_password_secure',
         clientId: TWITTER_KEY,
-        clientSecret: TWITTER_SECRET,
-        location: TWITTER_CALLBACK
+        clientSecret: TWITTER_SECRET
+        //location: TWITTER_CALLBACK
         //isSecure: false
     })
     server.auth.strategy('instagram', 'bell', {
         provider: 'instagram',
         password: 'cookie_encryption_password_secure',
         clientId: INSTAGRAM_KEY,
-        clientSecret: INSTAGRAM_SECRET,
+        clientSecret: INSTAGRAM_SECRET
         //isSecure: false,
-        location: INSTAGRAM_CALLBACK
+        //location: INSTAGRAM_CALLBACK
     })
     server.route(twitter)
     server.route(instagram)
