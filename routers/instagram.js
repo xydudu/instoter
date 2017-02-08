@@ -12,7 +12,9 @@ module.exports = [
                 if (!_req.auth.isAuthenticated) {
                     return _res('Authentication failed due to: ' + _req.auth.error.message)
                 }
-                return reply.redirect('/')
+                Util.saveToken('instagram', _req.auth.credentials)
+                    .then(_ => _res.redirect('/instoter'))
+                    .catch(_err =>  _res(_err) )
             }
          }
     }, {
