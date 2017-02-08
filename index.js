@@ -19,7 +19,17 @@ const instagram = require(`${root}/routers/instagram.js`)
 
 server.connection({port: PORT})
 
-server.route(index)
+server.register(require('vision'), _err => {
+    // if (_err)  do what ?
+    server.views({
+        engines: {
+            jade: require('pug')
+        },
+        path: `${root}/views`
+    })    
+    server.route(index)
+})
+
 
 server.register(bell, _err => {
     server.auth.strategy('twitter', 'bell', {

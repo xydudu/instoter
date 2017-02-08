@@ -4,10 +4,10 @@ const root = process.cwd()
 
 module.exports = {
      method: ['GET', 'POST'],
-     path: '/',
+     path: '/instoter',
      config: {
         handler: (_req, _res) => {
-            return _res('Hello')
+            return _res.view('index.jade')
         }
      }
 }

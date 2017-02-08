@@ -24,12 +24,14 @@
   "dependencies": {
     "bell": "^8.5.0",
     "dotenv": "^4.0.0",
-    "hapi": "^16.1.0"
+    "hapi": "^16.1.0",
+    "pug": "^2.0.0-beta11",
+    "vision": "^4.1.1"
   },
   "devDependencies": {
     "now": "^4.2.2"
   },
-  "engines" : {
-    "node" : "v0.7.5"
+  "engines": {
+    "node": "v0.7.5"
   }
 }
