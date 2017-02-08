@@ -1,6 +1,7 @@
 'use strict'
 
 const root = process.cwd()
+const Util = require(`${root}/util.js`)
 
 module.exports = [
     {

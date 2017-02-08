@@ -7,8 +7,8 @@ When I use IFTTT for instagram to twitter, as a very active Instagram user, my T
 3. 4 photos is ready then post the photos to twitter as a gallery
 
 # TODO
-- [ ] twitter login
-- [ ] instagram login
+- [x] twitter login
+- [x] instagram login
 - [ ] instagram watcher
 - [ ] instagram mark
 - [ ] post instagram photos to twitter, 4 photos each time
