@@ -1,13 +1,22 @@
 'use strict'
 
 const root = process.cwd()
+const Util = require(`${root}/util.js`)
 
 module.exports = {
      method: ['GET', 'POST'],
      path: '/instoter',
      config: {
         handler: (_req, _res) => {
-            return _res.view('index.jade')
+            Promise.all([
+                Util.readToken('twitter'),
+                Util.readToken('instagram')
+            ]).then(_data => {
+                let [twitter, instagram] = _data
+                return _res.view('index.jade', {twitter, instagram})
+            }).catch(_err => {
+                return _res(_err) 
+            })
         }
      }
 }

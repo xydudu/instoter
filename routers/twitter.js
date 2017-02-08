@@ -1,6 +1,7 @@
 'use strict'
 
 const root = process.cwd()
+const Util = require(`${root}/util.js`)
 
 module.exports = [
     {
@@ -12,7 +13,9 @@ module.exports = [
                 if (!_req.auth.isAuthenticated) {
                     return _res('Authentication failed due to: ' + _req.auth.error.message)
                 }
-                return _res('twitter auth ok')
+                Util.saveToken('twitter', _req.auth.credentials)
+                    .then(_ => _res.redirect('/instoter'))
+                    .catch(_err =>  _res(_err) )
             }
         }
     }, {
