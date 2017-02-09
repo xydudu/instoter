@@ -33,15 +33,21 @@ describe('Util', () => {
 
     describe('Instagram', () => {
         
-        it('Util.insToday()', function(done) {
+        // cause of GFW, this case can't running locally
+        it('Util.insByDay('20170124')', function(done) {
             this.timeout(50000)
             Util.insToday() 
                 .then(_data => {
-                    console.log(_data)
                     done()
                 })
                 .catch(done)
         })
+
+        it('Util.insFilter(feed)', () => {
+            const feed = require(`${root}/test/.instagram-feed.json`)  
+            const items = Util.insFilter(feed, '20170124')
+            assert.equal(items.length, 2)
+        }) 
     })
 
 })
