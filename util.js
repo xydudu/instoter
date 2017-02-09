@@ -1,6 +1,7 @@
 'use strict'
 
 const fs = require('fs')
+const request = require('request')
 const root = process.cwd()
 
 class Util {
@@ -24,6 +25,26 @@ class Util {
                 _resolve({token, secret, status: 1})
             })
         })
+    }
+
+    static fetch(_api) {
+        return new Promise((_resolve, _reject) => {
+            console.log(_api)
+            request(_api, (_err, _res, _body) => {
+                console.log(_body)
+                if (_err) _reject(_err)
+                _resolve(_body)
+            })
+        })
+    }
+
+    static insToday() {
+        let _ = this
+        return this.readToken('instagram')
+            .then(_data => {
+                let api = `https://api.instagram.com/v1/users/self/media/recent/?access_token=${_data.token}`
+                return _.fetch(api)
+            })
     }
 }
 

@@ -31,4 +31,17 @@ describe('Util', () => {
         }).catch(done) 
     })
 
+    describe('Instagram', () => {
+        
+        it('Util.insToday()', function(done) {
+            this.timeout(50000)
+            Util.insToday() 
+                .then(_data => {
+                    console.log(_data)
+                    done()
+                })
+                .catch(done)
+        })
+    })
+
 })
