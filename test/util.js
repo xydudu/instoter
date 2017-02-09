@@ -36,7 +36,7 @@ describe('Util', () => {
         // cause of GFW, this case can't running locally
         it('Util.insByDay("20170124")', function(done) {
             this.timeout(50000)
-            Util.insToday('20170124') 
+            Util.insByDay('20170124') 
                 .then(_data => {
                     done()
                 })
