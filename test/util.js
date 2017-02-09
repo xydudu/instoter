@@ -34,9 +34,9 @@ describe('Util', () => {
     describe('Instagram', () => {
         
         // cause of GFW, this case can't running locally
-        it('Util.insByDay('20170124')', function(done) {
+        it('Util.insByDay("20170124")', function(done) {
             this.timeout(50000)
-            Util.insToday() 
+            Util.insToday('20170124') 
                 .then(_data => {
                     done()
                 })
