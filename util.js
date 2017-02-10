@@ -62,7 +62,7 @@ class Util {
     }
 
     static readPhotos(_photo) {
-        let photo = _photo.images.standard_resolution
+        let photo = _photo.images.standard_resolution.url
         return new Promise((_resolve, _reject) => {
             request(photo, {encoding: null}, (_err, _res, _body) => {
                 if (_err) return _reject(_err)
