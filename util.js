@@ -4,6 +4,7 @@ const fs = require('fs')
 const request = require('request')
 const moment = require('moment')
 const root = process.cwd()
+const {TWITTER_KEY, TWITTER_SECRET} = process.env
 
 class Util {
     static saveToken(_type, _token) {
@@ -62,6 +63,12 @@ class Util {
         let api = `https://api.twitter.com/1.1/statuses/update.json` 
         return new Promise((_resolve, _reject) => {
             request.post(api, {
+                oauth: {
+                    consumer_key: TWITTER_KEY,
+                    consumer_secret: TWITTER_SECRET, 
+                    token: _token.token,
+                    token_secret: _token.secret
+                },
                 headers: {
                     Authorization: `Bearer ${_token}`
                 },

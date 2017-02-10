@@ -56,7 +56,7 @@ describe('Util', () => {
             const items = Util.insFilter(feed, '20170124')
             Util.readToken('twitter')
                 .then(_data => {
-                    return Util.PostToTwttier(items, _data.token) 
+                    return Util.PostToTwttier(items, _data) 
                 })
                 .then(_data => {
                     assert(_data.id_str)
