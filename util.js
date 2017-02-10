@@ -3,6 +3,7 @@
 const fs = require('fs')
 const request = require('request')
 const moment = require('moment')
+const Twitter = require('twitter')
 const root = process.cwd()
 const {TWITTER_KEY, TWITTER_SECRET} = process.env
 
@@ -61,23 +62,18 @@ class Util {
 
     static PostToTwttier(_feed, _token) {
         let api = `https://api.twitter.com/1.1/statuses/update.json` 
+        let client = new Twitter({
+            consumer_key: TWITTER_KEY,
+            consumer_secret: TWITTER_SECRET,
+            access_token_key: _token.token,
+            access_token_secret: _token.secret
+        })
         return new Promise((_resolve, _reject) => {
-            request.post(api, {
-                oauth: {
-                    consumer_key: TWITTER_KEY,
-                    consumer_secret: TWITTER_SECRET, 
-                    token: _token.token,
-                    token_secret: _token.secret
-                },
-                headers: {
-                    Authorization: `Bearer ${_token}`
-                },
-                form: {
-                    status: 'Hello ...'
-                }
-            }, (_err, _res, _body) => {
+            client.post(api, {status: 'hello world'}, (_err, _body, _res) => {
+            
                 if (_err) return _reject(_err) 
                 _resolve(_body)
+                
             })
         })
     }

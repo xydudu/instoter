@@ -29,6 +29,7 @@
     "moment": "^2.17.1",
     "pug": "^2.0.0-beta11",
     "request": "^2.79.0",
+    "twitter": "^1.7.0",
     "vision": "^4.1.1"
   },
   "devDependencies": {
