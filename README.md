@@ -10,6 +10,6 @@ When I use IFTTT for instagram to twitter, as a very active Instagram user, my T
 # TODO
 - [x] twitter login
 - [x] instagram login
-- [ ] instagram watcher
-- [ ] instagram mark
+- [x] get instagram photos by a day
 - [ ] post instagram photos to twitter every day
+- [ ] corn job trigger 

@@ -50,4 +50,20 @@ describe('Util', () => {
         }) 
     })
 
+    describe('Twitter', () => {
+        it('Util.PostToTwttier()', done => {
+            const feed = require(`${root}/test/.instagram-feed.json`)  
+            const items = Util.insFilter(feed, '20170124')
+            Util.readToken('twitter')
+                .then(_data => {
+                    return Util.PostToTwttier(items, _data.token) 
+                })
+                .then(_data => {
+                    assert(_data.id_str)
+                    done()
+                })
+                .catch(done)
+        }) 
+    })
+
 })

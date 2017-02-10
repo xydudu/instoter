@@ -30,7 +30,6 @@ class Util {
 
     static fetch(_api) {
         return new Promise((_resolve, _reject) => {
-            console.log(_api)
             request(_api, (_err, _res, _body) => {
                 if (_err) _reject(_err)
                 _resolve(_body)
@@ -57,6 +56,23 @@ class Util {
             .then(_data => {
                 return _.insFilter(_data, _day)
             })
+    }
+
+    static PostToTwttier(_feed, _token) {
+        let api = `https://api.twitter.com/1.1/statuses/update.json` 
+        return new Promise((_resolve, _reject) => {
+            request.post(api, {
+                headers: {
+                    Authorization: `Bearer ${_token}`
+                },
+                form: {
+                    status: 'Hello ...'
+                }
+            }, (_err, _res, _body) => {
+                if (_err) return _reject(_err) 
+                _resolve(_body)
+            })
+        })
     }
 }
 
