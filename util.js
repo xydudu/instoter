@@ -74,7 +74,7 @@ class Util {
 
     static uploadPhotos(_photo, _client) {
         return new Promise((_resolve, _reject) => {
-            client.post('media/upload', {media: _photo}, (_err, _body, _res) => {
+            _client.post('media/upload', {media: _photo}, (_err, _body, _res) => {
                 if (_err) return _reject(_err) 
                 _resolve(_body)
             })
@@ -86,7 +86,7 @@ class Util {
             return _m.media_id_string
         }).join(',')
         return new Promise((_resolve, _reject) => {
-            client.post('statuses/update', {media_ids: ids, status: 'hello'}, (_err, _body, _res) => {
+            _client.post('statuses/update', {media_ids: ids, status: 'hello'}, (_err, _body, _res) => {
                 if (_err) return _reject(_err) 
                 _resolve(_body)
             })
