@@ -63,11 +63,11 @@ class Util {
 
     static readPhotos(_photo) {
         let photo = _photo.images.standard_resolution
-        console.log(photo)
         return new Promise((_resolve, _reject) => {
-            request(photo, (_err, _res, _body) => {
+            request(photo, {encoding: null}, (_err, _res, _body) => {
                 if (_err) return _reject(_err)
-                _resolve(_body)
+                let body_encode  = new Buffer(_body).toString('base64')
+                _resolve(body_encode)
             })
         })
     }
@@ -102,10 +102,10 @@ class Util {
             access_token_secret: _token.secret
         })
 
-        Promise.all(_feed.map(_.readPhotos))
+        return Promise.all(_feed.map(_.readPhotos))
             .then(_photos => {
                 return Promise.all(_photos.map(_photo => {
-                    _.uploadPhotos(_photo, client)
+                    return _.uploadPhotos(_photo, client)
                 }))
             })
             .then(_medias => {

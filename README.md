@@ -11,5 +11,5 @@ When I use IFTTT for instagram to twitter, as a very active Instagram user, my T
 - [x] twitter login
 - [x] instagram login
 - [x] get instagram photos by a day
-- [ ] post instagram photos to twitter every day
+- [x] post instagram photos to twitter every day
 - [ ] corn job trigger 
