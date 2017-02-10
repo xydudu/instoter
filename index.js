@@ -37,7 +37,7 @@ server.register(bell, _err => {
         password: 'cookie_encryption_password_secure',
         clientId: TWITTER_KEY,
         clientSecret: TWITTER_SECRET,
-        isSecure: true
+        isSecure: false
         //location: TWITTER_CALLBACK
     })
     server.auth.strategy('instagram', 'bell', {

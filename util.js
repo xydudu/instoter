@@ -5,6 +5,7 @@ const request = require('request')
 const moment = require('moment')
 const Twitter = require('twitter')
 const root = process.cwd()
+require('dotenv').config()
 const {TWITTER_KEY, TWITTER_SECRET} = process.env
 
 class Util {
@@ -60,22 +61,56 @@ class Util {
             })
     }
 
+    static readPhotos(_photo) {
+        let photo = _photo.images.standard_resolution
+        console.log(photo)
+        return new Promise((_resolve, _reject) => {
+            request(photo, (_err, _res, _body) => {
+                if (_err) return _reject(_err)
+                _resolve(_body)
+            })
+        })
+    }
+
+    static uploadPhotos(_photo, _client) {
+        return new Promise((_resolve, _reject) => {
+            client.post('media/upload', {media: _photo}, (_err, _body, _res) => {
+                if (_err) return _reject(_err) 
+                _resolve(_body)
+            })
+        })
+    }
+
+    static updateStatus(_medias, _client) {
+        let ids = _medias.map(_m => {
+            return _m.media_id_string
+        }).join(',')
+        return new Promise((_resolve, _reject) => {
+            client.post('statuses/update', {media_ids: ids, status: 'hello'}, (_err, _body, _res) => {
+                if (_err) return _reject(_err) 
+                _resolve(_body)
+            })
+        })
+    }
+
     static PostToTwttier(_feed, _token) {
-        let api = `https://api.twitter.com/1.1/statuses/update.json` 
+        let _ = this
         let client = new Twitter({
             consumer_key: TWITTER_KEY,
             consumer_secret: TWITTER_SECRET,
             access_token_key: _token.token,
             access_token_secret: _token.secret
         })
-        return new Promise((_resolve, _reject) => {
-            client.post(api, {status: 'hello world'}, (_err, _body, _res) => {
-            
-                if (_err) return _reject(_err) 
-                _resolve(_body)
-                
+
+        Promise.all(_feed.map(_.readPhotos))
+            .then(_photos => {
+                return Promise.all(_photos.map(_photo => {
+                    _.uploadPhotos(_photo, client)
+                }))
             })
-        })
+            .then(_medias => {
+                return _.updateStatus(_medias, client)
+            })
     }
 }
 
