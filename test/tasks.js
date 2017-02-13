@@ -1,29 +1,28 @@
 'use strict'
 
 const root = process.cwd()
+const assert = require('assert')
 const Task = require(`${root}/task.js`)
 
 describe('Task', () => {
 
-    const task = new Task('post-by-day', { day: '20170124' })
+    const task = new Task({
+        task: `${root}/tasks/post-by-day.js`,
+        day: '20170124'
+    })
     it('Task.start()', done => {
         task.start()
-        task.on('started', (_status) => {
-            assert.equal(task.getStatus(), 'running')
-            assert.equal(_status, 'running')
-            done()
-        })
-        task.on('error', done) 
+            .then(_app => {
+                assert.equal(_app.pm_id, 0)
+                done()
+            })
+            .catch(done)
     })
 
     it('Task.end()', done => {
         task.end()
-        task.on('end', (_status) => {
-            assert.equal(task.getStatus(), 'end')
-            assert.equal(_status, 'end')
-            done()
-        })
-        task.on('error', done) 
+            .then(done)
+            .catch(done)
     })
 
 })

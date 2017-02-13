@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./index.js",
-    "now": "./node_modules/.bin/now",
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha",
+    "test_task": "./node_modules/.bin/mocha ./test/tasks.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "dotenv": "^4.0.0",
     "hapi": "^16.1.0",
     "moment": "^2.17.1",
+    "pm2": "^2.4.0",
     "pug": "^2.0.0-beta11",
     "request": "^2.79.0",
     "twitter": "^1.7.0",
