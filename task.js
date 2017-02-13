@@ -29,6 +29,7 @@ class Task extends EventEmitter {
                 return new Promise((_resolve, _reject) => {
                     pm2.start({
                         script : _.task,
+                        exec_mode: 'fork',
                         instances : 1,
                         args: _.day,
                         max_memory_restart : '100M'
