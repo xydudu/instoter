@@ -25,4 +25,4 @@ new Job('1 2 1 * * *', () => {
         process.exit(1)
     })
 
-})
+}, null, true, 'Asia/Shanghai')
