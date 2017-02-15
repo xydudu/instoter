@@ -16,6 +16,10 @@ new Job('1 2 1 * * *', () => {
             console.error('Token Error')
             return 
         }
+        if (!_data[0].length) {
+            console.error('No Photo Today')
+            return 
+        }
         return Util.PostToTwttier.apply(Util, _data)
     }).then(_data => {
         if (!_data.id) return console.error('Post Failed')
