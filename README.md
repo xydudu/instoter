@@ -14,4 +14,4 @@ When I use IFTTT for instagram to twitter, as a very active Instagram user, my T
 - [x] get instagram photos by a day
 - [x] post instagram photos to twitter every day
 - [ ] post instagram photos to twitter when 4 photos there
-- [ ] corn job trigger 
+- [x] corn job trigger 

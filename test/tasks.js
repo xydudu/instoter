@@ -10,7 +10,7 @@ describe('Task', () => {
         task: `${root}/tasks/post-by-day.js`,
         day: '20170124'
     })
-    it('Task.start()', done => {
+    it('task.start()', done => {
         task.start()
             .then(_app => {
                 assert.equal(_app.pm_id, 0)
@@ -19,9 +19,18 @@ describe('Task', () => {
             .catch(done)
     })
 
-    it('Task.end()', done => {
+    it('task.end()', done => {
         task.end()
             .then(done)
+            .catch(done)
+    })
+
+    it('task.list()', done => {
+        task.list()
+            .then(_list => {
+                assert.equal(_list.length, 1)
+                done()
+            })
             .catch(done)
     })
 

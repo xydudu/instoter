@@ -52,8 +52,13 @@ class Task extends EventEmitter {
         })
     }
 
-    getStatus() {
-       
+    list() {
+        return new Promise((_resolve, _reject) => {
+            pm2.list((_err, _list) => {
+                if (_err) return _reject(_err)
+                _resolve(_list)
+            })
+        })
     }
 
 }

@@ -2,6 +2,7 @@
 
 const root = process.cwd()
 const Util = require(`${root}/util.js`)
+const Task = require(`${root}/task.js`)
 
 module.exports = {
      method: ['GET', 'POST'],

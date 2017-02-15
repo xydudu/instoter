@@ -4,7 +4,7 @@ const root = process.cwd()
 const Util = require(`${root}/util.js`)
 const moment = require('moment')
 const Job = require('cron').CronJob
-const day = moment().format('YYYYMMDD')
+const day = moment().add(-1, 'days').format('YYYYMMDD')
 
 new Job('1 2 1 * * *', () => {
     
