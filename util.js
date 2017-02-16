@@ -2,7 +2,8 @@
 
 const fs = require('fs')
 const request = require('request')
-const moment = require('moment')
+//const moment = require('moment')
+const moment = require('moment-timezone')
 const Twitter = require('twitter')
 const root = process.cwd()
 require('dotenv').config()
@@ -44,7 +45,7 @@ class Util {
         let data = _feed.data || [] 
         return data.filter(_item => {
             let created_time = parseInt(_item.created_time + '000')
-            let day = moment(created_time).format('YYYYMMDD')
+            let day = moment.tz(created_time, 'Asia/Shanghai').format('YYYYMMDD')
             return day === _day
         })
     }
