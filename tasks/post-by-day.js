@@ -5,11 +5,11 @@ const Util = require(`${root}/util.js`)
 //const moment = require('moment')
 const moment = require('moment-timezone')
 const Job = require('cron').CronJob
-const day = moment().tz('Asia/Shanghai')
-                .add(-1, 'days').format('YYYYMMDD')
 
 new Job('1 2 1 * * *', () => {
     
+    const day = moment().tz('Asia/Shanghai')
+                .add(-1, 'days').format('YYYYMMDD')
     Promise.all([
         Util.insByDay(day),
         Util.readToken('twitter')
